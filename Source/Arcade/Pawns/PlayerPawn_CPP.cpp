@@ -5,6 +5,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/PlayerController.h"
+#include "../Components/ShootComponent.h"
 
 APlayerPawn_CPP::APlayerPawn_CPP() : TouchMoveSensivity(1.0f), MoveLimit(FVector2D(500.0f, 600.0f))
 {
@@ -17,6 +18,8 @@ APlayerPawn_CPP::APlayerPawn_CPP() : TouchMoveSensivity(1.0f), MoveLimit(FVector
 	Mesh->SetupAttachment(Collision, NAME_None);
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+
+	ShootComponent = CreateDefaultSubobject<UShootComponent>(TEXT("ShootComponent"));
 }
 
 void APlayerPawn_CPP::BeginPlay()

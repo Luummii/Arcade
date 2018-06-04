@@ -9,6 +9,7 @@ class UStaticMeshComponent;
 class USpringArmComponent;
 class UCameraComponent;
 class APlayerController;
+class UShootComponent;
 
 UCLASS()
 class ARCADE_API APlayerPawn_CPP : public APawn
@@ -44,11 +45,11 @@ public:
 	UStaticMeshComponent *Mesh = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
-	USpringArmComponent *SpringArm = nullptr;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
 	UCameraComponent *Camera = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
 	float TouchMoveSensivity;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
+	UShootComponent *ShootComponent = nullptr;
 };
