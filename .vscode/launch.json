@@ -1,0 +1,130 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Arcade (Debug)",
+			"request": "launch",
+			"preLaunchTask": "Arcade Win64 Debug Build",
+			"program": "E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Binaries\\Win64\\Arcade-Win64-Debug.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Arcade (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "Arcade Win64 DebugGame Build",
+			"program": "E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Binaries\\Win64\\Arcade-Win64-DebugGame.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Arcade (Development)",
+			"request": "launch",
+			"preLaunchTask": "Arcade Win64 Development Build",
+			"program": "E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Binaries\\Win64\\Arcade.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Arcade (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "Arcade Win64 Shipping Build",
+			"program": "E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Binaries\\Win64\\Arcade-Win64-Shipping.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Arcade (Test)",
+			"request": "launch",
+			"preLaunchTask": "Arcade Win64 Test Build",
+			"program": "E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Binaries\\Win64\\Arcade-Win64-Test.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "ArcadeEditor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "ArcadeEditor Win64 Debug Build",
+			"program": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Binaries\\Win64\\UE4Editor-Win64-Debug.exe",
+			"args": [
+				"E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Arcade.uproject",
+				"-debug"
+			],
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "ArcadeEditor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "ArcadeEditor Win64 DebugGame Build",
+			"program": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Arcade.uproject",
+				"-debug"
+			],
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "ArcadeEditor (Development)",
+			"request": "launch",
+			"preLaunchTask": "ArcadeEditor Win64 Development Build",
+			"program": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Arcade.uproject"
+			],
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "clr",
+			"request": "launch",
+			"program": "C:\\Program Files (x86)\\EpicGame\\UE_4.19\\Engine\\Binaries\\DotNET\\UnrealBuildTool.exe",
+			"console": "externalTerminal",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=\"E:\\YandexDisk\\Projects\\unreal\\Projects\\Arcade\\Arcade.uproject\"",
+				"-game",
+				"-engine"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+			"cwd": "C:\\Program Files (x86)\\EpicGame\\UE_4.19"
+		}
+	]
+}
