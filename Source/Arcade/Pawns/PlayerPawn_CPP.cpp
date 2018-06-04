@@ -4,26 +4,19 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/PlayerController.h"
 
-APlayerPawn_CPP::APlayerPawn_CPP()
+APlayerPawn_CPP::APlayerPawn_CPP() : TouchMoveSensivity(1.0f), MoveLimit(FVector2D(500.0f, 600.0f))
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	// Он же коллайдер
 	Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
-	SetRootComponent(Collision);
+	RootComponent = Collision;
 
-	// Моделька корабля
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(GetRootComponent());
+	Mesh->SetupAttachment(Collision, NAME_None);
 
-	// Рука камеры
-	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
-	SpringArm->SetupAttachment(RootComponent);
-
-	// Камера
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	Camera->SetupAttachment(SpringArm);
 }
 
 void APlayerPawn_CPP::BeginPlay()
@@ -41,15 +34,30 @@ void APlayerPawn_CPP::SetupPlayerInputComponent(UInputComponent *PlayerInputComp
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	InputComponent->BindTouch(IE_Pressed, this, &APlayerPawn_CPP::OnPressed);
-	InputComponent->BindTouch(IE_Released, this, &APlayerPawn_CPP::OnReleased);
+	InputComponent->BindTouch(IE_Repeat, this, &APlayerPawn_CPP::OnMove);
 }
 
-void APlayerPawn_CPP::OnPressed(ETouchIndex::Type Index, FVector TouchLocation)
+void APlayerPawn_CPP::PossessedBy(AController *NewController)
 {
-	UE_LOG(LogTemp, Warning, TEXT("OnPressed"));
+	UE_LOG(LogTemp, Warning, TEXT("PossessedBy"));
+	PlayerController = Cast<APlayerController>(NewController);
 }
 
-void APlayerPawn_CPP::OnReleased(ETouchIndex::Type Index, FVector TouchLocation)
+void APlayerPawn_CPP::OnPressed(ETouchIndex::Type Index, FVector Location)
 {
-	UE_LOG(LogTemp, Warning, TEXT("OnReleased"));
+	TouchLocation = FVector2D(Location.X, Location.Y);
+}
+
+void APlayerPawn_CPP::OnMove(ETouchIndex::Type Index, FVector Location)
+{
+	FVector2D TouchDeltaMove = FVector2D(TouchLocation.X - Location.X, TouchLocation.Y - Location.Y);
+
+	TouchDeltaMove = TouchDeltaMove * TouchMoveSensivity;
+
+	FVector NewLocation = GetActorLocation();
+	NewLocation.X = FMath::Clamp(NewLocation.X + TouchDeltaMove.Y, -MoveLimit.Y, MoveLimit.Y);
+	NewLocation.Y = FMath::Clamp(NewLocation.Y + TouchDeltaMove.X * -1.f, -MoveLimit.X, MoveLimit.X);
+
+	SetActorLocation(NewLocation);
+	TouchLocation = FVector2D(Location.X, Location.Y);
 }

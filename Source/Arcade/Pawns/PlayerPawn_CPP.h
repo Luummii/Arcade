@@ -8,6 +8,7 @@ class UBoxComponent;
 class UStaticMeshComponent;
 class USpringArmComponent;
 class UCameraComponent;
+class APlayerController;
 
 UCLASS()
 class ARCADE_API APlayerPawn_CPP : public APawn
@@ -19,8 +20,17 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-	void OnPressed(ETouchIndex::Type Index, FVector TouchLocation);
-	void OnReleased(ETouchIndex::Type Index, FVector TouchLocation);
+	virtual void PossessedBy(AController *NewController) override;
+
+	void OnPressed(ETouchIndex::Type Index, FVector Location);
+	void OnMove(ETouchIndex::Type Index, FVector Location);
+
+protected:
+	APlayerController *PlayerController;
+	FVector2D MoveLimit;
+
+private:
+	FVector2D TouchLocation;
 
 public:
 	virtual void Tick(float DeltaTime) override;
@@ -38,4 +48,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
 	UCameraComponent *Camera = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
+	float TouchMoveSensivity;
 };
