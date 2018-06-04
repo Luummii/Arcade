@@ -19,6 +19,8 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	void OnPressed(ETouchIndex::Type Index, FVector TouchLocation);
+	void OnReleased(ETouchIndex::Type Index, FVector TouchLocation);
 
 public:
 	virtual void Tick(float DeltaTime) override;
