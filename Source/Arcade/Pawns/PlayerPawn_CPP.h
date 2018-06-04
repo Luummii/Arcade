@@ -2,18 +2,20 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "PlayerPawn.generated.h"
+#include "PlayerPawn_CPP.generated.h"
 
 class UBoxComponent;
 class UStaticMeshComponent;
+class USpringArmComponent;
+class UCameraComponent;
 
 UCLASS()
-class ARCADE_API APlayerPawn : public APawn
+class ARCADE_API APlayerPawn_CPP : public APawn
 {
 	GENERATED_BODY()
 
 public:
-	APlayerPawn();
+	APlayerPawn_CPP();
 
 protected:
 	virtual void BeginPlay() override;
@@ -24,8 +26,14 @@ public:
 
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
-	UBoxComponent *PlayerPawnCollision = nullptr;
+	UBoxComponent *Collision = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
-	UStaticMeshComponent *PlayerPawnMesh = nullptr;
+	UStaticMeshComponent *Mesh = nullptr;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
+	USpringArmComponent *SpringArm = nullptr;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerPawn")
+	UCameraComponent *Camera = nullptr;
 };
