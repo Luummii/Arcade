@@ -16,21 +16,16 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+
+public:
+	void StartShooting();
+	void StopShooting();
+
+private:
 	void Shoot();
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "ShootComponent")
-	void StartShooting();
-
-	UFUNCTION(BlueprintCallable, Category = "ShootComponent")
-	void StopShooting();
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ShootComponent")
 	float ShootPeriod;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ShootComponent")
-	TSubclassOf<AProjectile_CPP> Projectile_BP;
 
 private:
 	FTimerHandle ShootingTimer;

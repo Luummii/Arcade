@@ -40,5 +40,5 @@ void UShootComponent_CPP::Shoot()
 	//Rotation.Add(0.0f, 5.0f, 0.0f);
 	FActorSpawnParameters SpawnParameters;
 
-	GetWorld()->SpawnActor<AProjectile_CPP>(Projectile_BP, Location, Rotation, SpawnParameters);
+	GetWorld()->SpawnActor<AProjectile_CPP>(Location, Rotation, SpawnParameters);
 }

@@ -8,4 +8,7 @@ UCLASS()
 class ARCADE_API AGameMode_CPP : public AGameMode
 {
 	GENERATED_BODY()
+
+public:
+	AGameMode_CPP();
 };

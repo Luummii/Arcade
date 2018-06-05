@@ -1,4 +1,7 @@
 #include "GameMode_CPP.h"
+#include "../Player/PlayerShip_CPP.h"
 
-// TODO Реализовать этот режим без Blueprint
-// TODO Установить DefaultPawn
+AGameMode_CPP::AGameMode_CPP()
+{
+  DefaultPawnClass = APlayerShip_CPP::StaticClass();
+}

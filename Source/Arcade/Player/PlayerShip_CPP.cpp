@@ -1,13 +1,14 @@
 #include "PlayerShip_CPP.h"
-#include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/PlayerController.h"
+#include "ConstructorHelpers.h"
 #include "../Components/ShootComponent_CPP.h"
 
-APlayerShip_CPP::APlayerShip_CPP() : TouchMoveSensivity(1.0f), MoveLimit(FVector2D(500.0f, 600.0f))
+APlayerShip_CPP::APlayerShip_CPP()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -17,7 +18,13 @@ APlayerShip_CPP::APlayerShip_CPP() : TouchMoveSensivity(1.0f), MoveLimit(FVector
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(Collision, NAME_None);
 
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/Assets/Models/ship.ship'"));
+	UStaticMesh *Asset = MeshAsset.Object;
+	Mesh->SetStaticMesh(Asset);
+
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	Camera->AddLocalTransform(FTransform(FVector(-300.0f, 0.0f, 600.0f)));
+	Camera->AddLocalRotation(FRotator(-70.0f, 0.0f, 0.0f));
 
 	ShootComponent = CreateDefaultSubobject<UShootComponent_CPP>(TEXT("ShootComponent"));
 }
@@ -42,7 +49,7 @@ void APlayerShip_CPP::SetupPlayerInputComponent(UInputComponent *PlayerInputComp
 
 void APlayerShip_CPP::PossessedBy(AController *NewController)
 {
-	PlayerController = Cast<APlayerController>(NewController);
+	//PlayerController = Cast<APlayerController>(NewController); см. подсказку в определении
 }
 
 void APlayerShip_CPP::OnPressed(ETouchIndex::Type Index, FVector Location)

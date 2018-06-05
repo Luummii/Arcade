@@ -21,35 +21,27 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+
+public:
+	virtual void Tick(float DeltaTime) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
+	// Как только пешка получает контроллер, то его можно тут передать в внутрь класса
 	virtual void PossessedBy(AController *NewController) override;
 
+private:
 	void OnPressed(ETouchIndex::Type Index, FVector Location);
 	void OnMove(ETouchIndex::Type Index, FVector Location);
 
 protected:
 	APlayerController *PlayerController;
-	FVector2D MoveLimit;
 
 private:
+	float TouchMoveSensivity = 1.0f;
+	FVector2D MoveLimit = FVector2D(500.0f, 600.0f);
 	FVector2D TouchLocation;
 
-public:
-	virtual void Tick(float DeltaTime) override;
-	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
-
-public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerShip")
 	UBoxComponent *Collision = nullptr;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerShip")
 	UStaticMeshComponent *Mesh = nullptr;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerShip")
 	UCameraComponent *Camera = nullptr;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerShip")
-	float TouchMoveSensivity;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerShip")
 	UShootComponent_CPP *ShootComponent = nullptr;
 };

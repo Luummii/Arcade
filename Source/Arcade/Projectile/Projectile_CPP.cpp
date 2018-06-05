@@ -1,6 +1,7 @@
 #include "Projectile_CPP.h"
 #include "Components/SphereComponent.h"
-#include "Components/StaticMeshComponent.h" // TODO проверить будет ли работать без этого
+#include "Components/StaticMeshComponent.h"
+#include "ConstructorHelpers.h"
 
 AProjectile_CPP::AProjectile_CPP() : ProjectileSpeed(1000.0f)
 {
@@ -12,6 +13,10 @@ AProjectile_CPP::AProjectile_CPP() : ProjectileSpeed(1000.0f)
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProjectileMesh"));
 	Mesh->SetupAttachment(Collision, NAME_None);
 	Mesh->SetCollisionProfileName("NoCollision");
+
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/Assets/Models/ship.ship'"));
+	UStaticMesh *Asset = MeshAsset.Object;
+	Mesh->SetStaticMesh(Asset);
 }
 
 void AProjectile_CPP::BeginPlay()
