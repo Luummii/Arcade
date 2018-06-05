@@ -10,13 +10,12 @@ UShootComponent_CPP::UShootComponent_CPP() : ShootPeriod(1.0f)
 void UShootComponent_CPP::BeginPlay()
 {
 	Super::BeginPlay();
-	StartShooting();
 }
 
 void UShootComponent_CPP::StartShooting()
 {
 	// Дескриптор, для ОП, чтбы понятно было какой таймер работает и над чем
-	// Класс, где запускается
+	// Класс, на котором запускается
 	// Метод, который нужно запусить
 	// Интервал
 	// Зедаржка перед первым запуском
@@ -30,8 +29,6 @@ void UShootComponent_CPP::StopShooting()
 
 void UShootComponent_CPP::Shoot()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Shoot"));
-
 	// FTransform SpawnTransform;
 	// SpawnTransform.SetLocation(GetOwner()->GetActorLocation());
 

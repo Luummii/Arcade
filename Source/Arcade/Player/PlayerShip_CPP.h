@@ -10,6 +10,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class APlayerController;
 class UShootComponent_CPP;
+class UMoveComponent_CPP;
 
 UCLASS()
 class ARCADE_API APlayerShip_CPP : public APawn
@@ -28,20 +29,13 @@ public:
 	// Как только пешка получает контроллер, то его можно тут передать в внутрь класса
 	virtual void PossessedBy(AController *NewController) override;
 
-private:
-	void OnPressed(ETouchIndex::Type Index, FVector Location);
-	void OnMove(ETouchIndex::Type Index, FVector Location);
-
 protected:
 	APlayerController *PlayerController;
 
 private:
-	float TouchMoveSensivity = 1.0f;
-	FVector2D MoveLimit = FVector2D(500.0f, 600.0f);
-	FVector2D TouchLocation;
-
 	UBoxComponent *Collision = nullptr;
 	UStaticMeshComponent *Mesh = nullptr;
 	UCameraComponent *Camera = nullptr;
 	UShootComponent_CPP *ShootComponent = nullptr;
+	UMoveComponent_CPP *MoveComponent = nullptr;
 };

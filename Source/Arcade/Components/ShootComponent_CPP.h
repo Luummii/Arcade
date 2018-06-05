@@ -6,7 +6,7 @@
 
 class AProjectile_CPP;
 
-UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+UCLASS()
 class ARCADE_API UShootComponent_CPP : public UActorComponent
 {
 	GENERATED_BODY()
