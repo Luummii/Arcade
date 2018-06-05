@@ -2,18 +2,18 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ShootProjectile.generated.h"
+#include "Projectile_CPP.generated.h"
 
 class USphereComponent;
 class UStaticMeshComponent;
 
 UCLASS()
-class ARCADE_API AShootProjectile : public AActor
+class ARCADE_API AProjectile_CPP : public AActor
 {
 	GENERATED_BODY()
 
 public:
-	AShootProjectile();
+	AProjectile_CPP();
 
 protected:
 	virtual void BeginPlay() override;
@@ -22,12 +22,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ShootProjectile")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
 	USphereComponent *Collision = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ShootProjectile")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
 	UStaticMeshComponent *Mesh = nullptr;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ShootProjectile")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile")
 	float ProjectileSpeed;
 };

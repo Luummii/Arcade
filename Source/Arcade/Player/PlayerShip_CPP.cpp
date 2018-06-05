@@ -1,13 +1,13 @@
-#include "PlayerPawn_CPP.h"
+#include "PlayerShip_CPP.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/PlayerController.h"
-#include "../Components/ShootComponent.h"
+#include "../Components/ShootComponent_CPP.h"
 
-APlayerPawn_CPP::APlayerPawn_CPP() : TouchMoveSensivity(1.0f), MoveLimit(FVector2D(500.0f, 600.0f))
+APlayerShip_CPP::APlayerShip_CPP() : TouchMoveSensivity(1.0f), MoveLimit(FVector2D(500.0f, 600.0f))
 {
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -19,39 +19,38 @@ APlayerPawn_CPP::APlayerPawn_CPP() : TouchMoveSensivity(1.0f), MoveLimit(FVector
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 
-	ShootComponent = CreateDefaultSubobject<UShootComponent>(TEXT("ShootComponent"));
+	ShootComponent = CreateDefaultSubobject<UShootComponent_CPP>(TEXT("ShootComponent"));
 }
 
-void APlayerPawn_CPP::BeginPlay()
+void APlayerShip_CPP::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-void APlayerPawn_CPP::Tick(float DeltaTime)
+void APlayerShip_CPP::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
 
-void APlayerPawn_CPP::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
+void APlayerShip_CPP::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	InputComponent->BindTouch(IE_Pressed, this, &APlayerPawn_CPP::OnPressed);
-	InputComponent->BindTouch(IE_Repeat, this, &APlayerPawn_CPP::OnMove);
+	InputComponent->BindTouch(IE_Pressed, this, &APlayerShip_CPP::OnPressed);
+	InputComponent->BindTouch(IE_Repeat, this, &APlayerShip_CPP::OnMove);
 }
 
-void APlayerPawn_CPP::PossessedBy(AController *NewController)
+void APlayerShip_CPP::PossessedBy(AController *NewController)
 {
-	UE_LOG(LogTemp, Warning, TEXT("PossessedBy"));
 	PlayerController = Cast<APlayerController>(NewController);
 }
 
-void APlayerPawn_CPP::OnPressed(ETouchIndex::Type Index, FVector Location)
+void APlayerShip_CPP::OnPressed(ETouchIndex::Type Index, FVector Location)
 {
 	TouchLocation = FVector2D(Location.X, Location.Y);
 }
 
-void APlayerPawn_CPP::OnMove(ETouchIndex::Type Index, FVector Location)
+void APlayerShip_CPP::OnMove(ETouchIndex::Type Index, FVector Location)
 {
 	FVector2D TouchDeltaMove = FVector2D(TouchLocation.X - Location.X, TouchLocation.Y - Location.Y);
 

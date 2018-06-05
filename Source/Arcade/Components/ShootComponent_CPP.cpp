@@ -1,34 +1,34 @@
-#include "ShootComponent.h"
+#include "ShootComponent_CPP.h"
 #include "Engine/World.h"
 #include "TimerManager.h"
-#include "../Actors/ShootProjectile.h"
+#include "../Projectile/Projectile_CPP.h"
 
-UShootComponent::UShootComponent() : ShootPeriod(1.0f)
+UShootComponent_CPP::UShootComponent_CPP() : ShootPeriod(1.0f)
 {
 }
 
-void UShootComponent::BeginPlay()
+void UShootComponent_CPP::BeginPlay()
 {
 	Super::BeginPlay();
 	StartShooting();
 }
 
-void UShootComponent::StartShooting()
+void UShootComponent_CPP::StartShooting()
 {
 	// Дескриптор, для ОП, чтбы понятно было какой таймер работает и над чем
 	// Класс, где запускается
 	// Метод, который нужно запусить
 	// Интервал
 	// Зедаржка перед первым запуском
-	GetWorld()->GetTimerManager().SetTimer(ShootingTimer, this, &UShootComponent::Shoot, ShootPeriod, true, ShootPeriod);
+	GetWorld()->GetTimerManager().SetTimer(ShootingTimer, this, &UShootComponent_CPP::Shoot, ShootPeriod, true, ShootPeriod);
 }
 
-void UShootComponent::StopShooting()
+void UShootComponent_CPP::StopShooting()
 {
 	GetWorld()->GetTimerManager().ClearTimer(ShootingTimer);
 }
 
-void UShootComponent::Shoot()
+void UShootComponent_CPP::Shoot()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Shoot"));
 
@@ -40,5 +40,5 @@ void UShootComponent::Shoot()
 	//Rotation.Add(0.0f, 5.0f, 0.0f);
 	FActorSpawnParameters SpawnParameters;
 
-	GetWorld()->SpawnActor<AShootProjectile>(ProjectileClass, Location, Rotation, SpawnParameters);
+	GetWorld()->SpawnActor<AProjectile_CPP>(Projectile_BP, Location, Rotation, SpawnParameters);
 }

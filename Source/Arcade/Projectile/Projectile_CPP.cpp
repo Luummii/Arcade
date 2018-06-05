@@ -1,8 +1,8 @@
-#include "ShootProjectile.h"
+#include "Projectile_CPP.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h" // TODO проверить будет ли работать без этого
 
-AShootProjectile::AShootProjectile() : ProjectileSpeed(1000.0f)
+AProjectile_CPP::AProjectile_CPP() : ProjectileSpeed(1000.0f)
 {
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -14,12 +14,12 @@ AShootProjectile::AShootProjectile() : ProjectileSpeed(1000.0f)
 	Mesh->SetCollisionProfileName("NoCollision");
 }
 
-void AShootProjectile::BeginPlay()
+void AProjectile_CPP::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-void AShootProjectile::Tick(float DeltaTime)
+void AProjectile_CPP::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 

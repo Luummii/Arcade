@@ -2,17 +2,17 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "ShootComponent.generated.h"
+#include "ShootComponent_CPP.generated.h"
 
-class AShootProjectile;
+class AProjectile_CPP;
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
-class ARCADE_API UShootComponent : public UActorComponent
+class ARCADE_API UShootComponent_CPP : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
-	UShootComponent();
+	UShootComponent_CPP();
 
 protected:
 	virtual void BeginPlay() override;
@@ -30,7 +30,7 @@ public:
 	float ShootPeriod;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ShootComponent")
-	TSubclassOf<AShootProjectile> ProjectileClass;
+	TSubclassOf<AProjectile_CPP> Projectile_BP;
 
 private:
 	FTimerHandle ShootingTimer;
