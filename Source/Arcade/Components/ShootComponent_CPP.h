@@ -6,6 +6,20 @@
 
 class AProjectile_CPP;
 
+USTRUCT()
+struct FShootInfo
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FShootInfo(FVector __Offset, float __Angle) : Offset(__Offset), Angle(__Angle) {}
+	FShootInfo() : Offset(FVector(0.0f, 0.0f, 0.0f)), Angle(0.0f) {}
+
+public:
+	FVector Offset;
+	float Angle;
+};
+
 UCLASS()
 class ARCADE_API UShootComponent_CPP : public UActorComponent
 {
@@ -23,10 +37,12 @@ public:
 
 private:
 	void Shoot();
+	void GenerateStruct(FVector Offset, float Angle);
 
 public:
 	float ShootPeriod;
 
 private:
 	FTimerHandle ShootingTimer;
+	TArray<FShootInfo> ShootInfos;
 };
