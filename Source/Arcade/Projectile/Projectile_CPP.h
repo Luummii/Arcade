@@ -25,4 +25,8 @@ public:
 	USphereComponent *Collision = nullptr;
 	UStaticMeshComponent *Mesh = nullptr;
 	float ProjectileSpeed = 500.0f;
+
+protected:
+	UFUNCTION()
+	void OnProjectileOverlap(UPrimitiveComponent *OpelappedComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 BodyIndex, bool Sweep, const FHitResult &Hit);
 };

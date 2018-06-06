@@ -9,6 +9,7 @@ AProjectile_CPP::AProjectile_CPP()
 
 	Collision = CreateDefaultSubobject<USphereComponent>(TEXT("ProjectileCollision"));
 	RootComponent = Collision;
+	//Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProjectileMesh"));
 	Mesh->SetupAttachment(Collision, NAME_None);
@@ -23,6 +24,7 @@ void AProjectile_CPP::BeginPlay()
 {
 	Super::BeginPlay();
 	SetActorScale3D(FVector(0.1f, 0.1f, 0.1f));
+	Collision->OnComponentBeginOverlap.AddDynamic(this, &AProjectile_CPP::OnProjectileOverlap);
 }
 
 void AProjectile_CPP::Tick(float DeltaTime)
@@ -30,4 +32,9 @@ void AProjectile_CPP::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	AddActorLocalOffset(FVector(ProjectileSpeed * DeltaTime, 0.0f, 0.0f));
+}
+
+void AProjectile_CPP::OnProjectileOverlap(UPrimitiveComponent *OpelappedComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 BodyIndex, bool Sweep, const FHitResult &Hit)
+{
+	UE_LOG(LogTemp, Warning, TEXT("OnProjectileOverlap"));
 }

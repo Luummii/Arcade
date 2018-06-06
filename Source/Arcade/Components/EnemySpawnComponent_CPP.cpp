@@ -20,8 +20,6 @@ void UEnemySpawnComponent_CPP::BeginPlay()
 	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(-100.0f, 90.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), 100, 1.0f));
 
 	StartSpawnStage();
-
-	UE_LOG(LogTemp, Warning, TEXT("BeginPlay"));
 }
 
 void UEnemySpawnComponent_CPP::StartSpawnStage()
