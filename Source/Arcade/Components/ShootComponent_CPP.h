@@ -4,8 +4,6 @@
 #include "Components/ActorComponent.h"
 #include "ShootComponent_CPP.generated.h"
 
-class AProjectile_CPP;
-
 USTRUCT()
 struct FShootInfo
 {
@@ -13,7 +11,7 @@ struct FShootInfo
 
 public:
 	FShootInfo(FVector __Offset, float __Angle) : Offset(__Offset), Angle(__Angle) {}
-	FShootInfo() : Offset(FVector(0.0f, 0.0f, 0.0f)), Angle(0.0f) {}
+	FShootInfo() {}
 
 public:
 	FVector Offset;

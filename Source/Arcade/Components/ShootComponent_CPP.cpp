@@ -32,8 +32,7 @@ void UShootComponent_CPP::StopShooting()
 
 void UShootComponent_CPP::GenerateStruct(FVector Offset, float Angle)
 {
-	FShootInfo ShootInfo(Offset, Angle);
-	ShootInfos.Add(ShootInfo);
+	ShootInfos.Add(FShootInfo(Offset, Angle));
 }
 
 void UShootComponent_CPP::Shoot()
