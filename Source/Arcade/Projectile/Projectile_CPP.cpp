@@ -3,7 +3,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "ConstructorHelpers.h"
 
-AProjectile_CPP::AProjectile_CPP() : ProjectileSpeed(1000.0f)
+AProjectile_CPP::AProjectile_CPP()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -22,6 +22,7 @@ AProjectile_CPP::AProjectile_CPP() : ProjectileSpeed(1000.0f)
 void AProjectile_CPP::BeginPlay()
 {
 	Super::BeginPlay();
+	SetActorScale3D(FVector(0.1f, 0.1f, 0.1f));
 }
 
 void AProjectile_CPP::Tick(float DeltaTime)

@@ -5,7 +5,9 @@
 
 UShootComponent_CPP::UShootComponent_CPP()
 {
-	GenerateStruct(FVector(0.0f, 0.0f, 0.0f), 30.0f);
+	GenerateStruct(FVector(0.0f, 10.0f, 0.0f), 90.0f);
+	GenerateStruct(FVector(10.0f, 20.0f, 0.0f), 60.0f);
+	GenerateStruct(FVector(-10.0f, 20.0f, 0.0f), 120.0f);
 }
 
 void UShootComponent_CPP::BeginPlay()
@@ -20,7 +22,7 @@ void UShootComponent_CPP::StartShooting()
 	// Метод, который нужно запусить
 	// Интервал
 	// Зедаржка перед первым запуском
-	GetWorld()->GetTimerManager().SetTimer(ShootingTimer, this, &UShootComponent_CPP::Shoot, ShootPeriod, true, ShootPeriod);
+	GetWorld()->GetTimerManager().SetTimer(ShootingTimer, this, &UShootComponent_CPP::Shoot, ShootPeriod, true, 0.0f);
 }
 
 void UShootComponent_CPP::StopShooting()
@@ -41,8 +43,8 @@ void UShootComponent_CPP::Shoot()
 
 	for (FShootInfo ShootInfo : ShootInfos)
 	{
-		FVector Location = GetOwner()->GetActorLocation();
 		FRotator Rotation = GetOwner()->GetActorRotation();
+		FVector Location = GetOwner()->GetActorLocation() + Rotation.RotateVector(ShootInfo.Offset);
 		Rotation.Add(0.0f, ShootInfo.Angle, 0.0f);
 		FActorSpawnParameters SpawnParameters;
 		GetWorld()->SpawnActor<AProjectile_CPP>(Location, Rotation, SpawnParameters);

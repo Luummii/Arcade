@@ -40,7 +40,7 @@ private:
 	void GenerateStruct(FVector Offset, float Angle);
 
 public:
-	float ShootPeriod = .2f;
+	float ShootPeriod = .1f;
 
 private:
 	FTimerHandle ShootingTimer;
