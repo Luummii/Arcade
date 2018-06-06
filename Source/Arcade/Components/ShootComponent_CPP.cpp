@@ -5,9 +5,9 @@
 
 UShootComponent_CPP::UShootComponent_CPP()
 {
-	GenerateStruct(FVector(0.0f, 10.0f, 0.0f), 90.0f);
-	GenerateStruct(FVector(10.0f, 20.0f, 0.0f), 60.0f);
-	GenerateStruct(FVector(-10.0f, 20.0f, 0.0f), 120.0f);
+	ShootInfos.Add(FShootInfo(FVector(0.0f, 10.0f, 0.0f), 90.0f));
+	ShootInfos.Add(FShootInfo(FVector(10.0f, 20.0f, 0.0f), 60.0f));
+	ShootInfos.Add(FShootInfo(FVector(-10.0f, 20.0f, 0.0f), 120.0f));
 }
 
 void UShootComponent_CPP::BeginPlay()
@@ -28,11 +28,6 @@ void UShootComponent_CPP::StartShooting()
 void UShootComponent_CPP::StopShooting()
 {
 	GetWorld()->GetTimerManager().ClearTimer(ShootingTimer);
-}
-
-void UShootComponent_CPP::GenerateStruct(FVector Offset, float Angle)
-{
-	ShootInfos.Add(FShootInfo(Offset, Angle));
 }
 
 void UShootComponent_CPP::Shoot()

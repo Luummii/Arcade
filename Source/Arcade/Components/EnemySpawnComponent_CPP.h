@@ -34,8 +34,8 @@ protected:
 
 private:
 	TArray<FEnemySpawnInfo> EnemySpawnInfos;
-	float StageMinDelay;
-	float StageMaxDelay;
+	float StageMinDelay = 1.0f;
+	float StageMaxDelay = 10.0f;
 
 protected:
 	FEnemySpawnInfo SpawnStage;
