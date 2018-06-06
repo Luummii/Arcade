@@ -25,7 +25,7 @@ public:
 	void OnBackMove();
 
 private:
-	float SpeedMove = 1.0f;
+	float SpeedMove = 5.0f;
 	bool LeftMove = false;
 	bool RightMove = false;
 	bool ForwardMove = false;

@@ -20,7 +20,7 @@ public:
 	float Angle;
 };
 
-UCLASS()
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class ARCADE_API UShootComponent_CPP : public UActorComponent
 {
 	GENERATED_BODY()
@@ -40,7 +40,7 @@ private:
 	void GenerateStruct(FVector Offset, float Angle);
 
 public:
-	float ShootPeriod;
+	float ShootPeriod = .2f;
 
 private:
 	FTimerHandle ShootingTimer;

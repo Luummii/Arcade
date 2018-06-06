@@ -3,7 +3,7 @@
 #include "TimerManager.h"
 #include "../Projectile/Projectile_CPP.h"
 
-UShootComponent_CPP::UShootComponent_CPP() : ShootPeriod(1.0f)
+UShootComponent_CPP::UShootComponent_CPP()
 {
 	GenerateStruct(FVector(0.0f, 0.0f, 0.0f), 30.0f);
 }

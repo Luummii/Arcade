@@ -14,7 +14,7 @@ AProjectile_CPP::AProjectile_CPP() : ProjectileSpeed(1000.0f)
 	Mesh->SetupAttachment(Collision, NAME_None);
 	Mesh->SetCollisionProfileName("NoCollision");
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/Assets/Models/ship.ship'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/Assets/Models/Projectile/Sphere.Sphere'"));
 	UStaticMesh *Asset = MeshAsset.Object;
 	Mesh->SetStaticMesh(Asset);
 }

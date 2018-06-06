@@ -16,12 +16,119 @@ APlayerShip_CPP::APlayerShip_CPP()
 	Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
 	RootComponent = Collision;
 
-	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(Collision, NAME_None);
+	ShipBody = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ShipBody"));
+	ShipBody->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetShipBody(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_body.ship_body'"));
+	UStaticMesh *AssetShipBody = MeshAssetShipBody.Object;
+	ShipBody->SetStaticMesh(AssetShipBody);
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/Assets/Models/ship.ship'"));
-	UStaticMesh *Asset = MeshAsset.Object;
-	Mesh->SetStaticMesh(Asset);
+	Ship_windshield_usemtl_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ship_windshield_usemtl_1"));
+	Ship_windshield_usemtl_1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetShip_windshield_usemtl_1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_windshield_usemtl_1.ship_windshield_usemtl_1'"));
+	UStaticMesh *AssetShip_windshield_usemtl_1 = MeshAssetShip_windshield_usemtl_1.Object;
+	Ship_windshield_usemtl_1->SetStaticMesh(AssetShip_windshield_usemtl_1);
+
+	Ship_windshield_usemtl_2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ship_windshield_usemtl_2"));
+	Ship_windshield_usemtl_2->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetShip_windshield_usemtl_2(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_windshield_usemtl_2.ship_windshield_usemtl_2'"));
+	UStaticMesh *AssetShip_windshield_usemtl_2 = MeshAssetShip_windshield_usemtl_2.Object;
+	Ship_windshield_usemtl_2->SetStaticMesh(AssetShip_windshield_usemtl_2);
+
+	Ship_red_mesh01_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ship_red_mesh01_1"));
+	Ship_red_mesh01_1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetShip_red_mesh01_1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_red_mesh01_1.ship_red_mesh01_1'"));
+	UStaticMesh *AssetShip_red_mesh01_1 = MeshAssetShip_red_mesh01_1.Object;
+	Ship_red_mesh01_1->SetStaticMesh(AssetShip_red_mesh01_1);
+
+	ship_propulsion_usemtl_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_propulsion_usemtl_1"));
+	ship_propulsion_usemtl_1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_propulsion_usemtl_1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_propulsion_usemtl_1.ship_propulsion_usemtl_1'"));
+	UStaticMesh *Assetship_propulsion_usemtl_1 = MeshAssetship_propulsion_usemtl_1.Object;
+	ship_propulsion_usemtl_1->SetStaticMesh(Assetship_propulsion_usemtl_1);
+
+	ship_lights_2_mesh01_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_lights_2_mesh01_1"));
+	ship_lights_2_mesh01_1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_lights_2_mesh01_1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_lights_2_mesh01_1.ship_lights_2_mesh01_1'"));
+	UStaticMesh *Assetship_lights_2_mesh01_1 = MeshAssetship_lights_2_mesh01_1.Object;
+	ship_lights_2_mesh01_1->SetStaticMesh(Assetship_lights_2_mesh01_1);
+
+	ship_green__1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_green__1"));
+	ship_green__1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_green__1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_green__1.ship_green__1'"));
+	UStaticMesh *Assetship_green__1 = MeshAssetship_green__1.Object;
+	ship_green__1->SetStaticMesh(Assetship_green__1);
+
+	ship_door_usemtl_2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_door_usemtl_2"));
+	ship_door_usemtl_2->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_door_usemtl_2(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_door_usemtl_2.ship_door_usemtl_2'"));
+	UStaticMesh *Assetship_door_usemtl_2 = MeshAssetship_door_usemtl_2.Object;
+	ship_door_usemtl_2->SetStaticMesh(Assetship_door_usemtl_2);
+
+	ship_door_usemtl_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_door_usemtl_1"));
+	ship_door_usemtl_1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_door_usemtl_1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_door_usemtl_1.ship_door_usemtl_1'"));
+	UStaticMesh *Assetship_door_usemtl_1 = MeshAssetship_door_usemtl_1.Object;
+	ship_door_usemtl_1->SetStaticMesh(Assetship_door_usemtl_1);
+
+	ship_dash_usemtl_4 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_dash_usemtl_4"));
+	ship_dash_usemtl_4->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_dash_usemtl_4(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_dash_usemtl_4.ship_dash_usemtl_4'"));
+	UStaticMesh *Assetship_dash_usemtl_4 = MeshAssetship_dash_usemtl_4.Object;
+	ship_dash_usemtl_4->SetStaticMesh(Assetship_dash_usemtl_4);
+
+	ship_dash_usemtl_3 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_dash_usemtl_3"));
+	ship_dash_usemtl_3->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_dash_usemtl_3(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_dash_usemtl_3.ship_dash_usemtl_3'"));
+	UStaticMesh *Assetship_dash_usemtl_3 = MeshAssetship_dash_usemtl_3.Object;
+	ship_dash_usemtl_3->SetStaticMesh(Assetship_dash_usemtl_3);
+
+	ship_dash_usemtl_2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_dash_usemtl_2"));
+	ship_dash_usemtl_2->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_dash_usemtl_2(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_dash_usemtl_2.ship_dash_usemtl_2'"));
+	UStaticMesh *Assetship_dash_usemtl_2 = MeshAssetship_dash_usemtl_2.Object;
+	ship_dash_usemtl_2->SetStaticMesh(Assetship_dash_usemtl_2);
+
+	ship_dash_usemtl_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_dash_usemtl_1"));
+	ship_dash_usemtl_1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_dash_usemtl_1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_dash_usemtl_1.ship_dash_usemtl_1'"));
+	UStaticMesh *Assetship_dash_usemtl_1 = MeshAssetship_dash_usemtl_1.Object;
+	ship_dash_usemtl_1->SetStaticMesh(Assetship_dash_usemtl_1);
+
+	ship_cushion_usemtl_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_cushion_usemtl_1"));
+	ship_cushion_usemtl_1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_cushion_usemtl_1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_cushion_usemtl_1.ship_cushion_usemtl_1'"));
+	UStaticMesh *Assetship_cushion_usemtl_1 = MeshAssetship_cushion_usemtl_1.Object;
+	ship_cushion_usemtl_1->SetStaticMesh(Assetship_cushion_usemtl_1);
+
+	ship_couplers__1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_couplers__1"));
+	ship_couplers__1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_couplers__1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_couplers__1.ship_couplers__1'"));
+	UStaticMesh *Assetship_couplers__1 = MeshAssetship_couplers__1.Object;
+	ship_couplers__1->SetStaticMesh(Assetship_couplers__1);
+
+	ship_cockpit2_usemtl_4 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_cockpit2_usemtl_4"));
+	ship_cockpit2_usemtl_4->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_cockpit2_usemtl_4(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_cockpit2_usemtl_4.ship_cockpit2_usemtl_4'"));
+	UStaticMesh *Assetship_cockpit2_usemtl_4 = MeshAssetship_cockpit2_usemtl_4.Object;
+	ship_cockpit2_usemtl_4->SetStaticMesh(Assetship_cockpit2_usemtl_4);
+
+	ship_cockpit2_usemtl_3 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_cockpit2_usemtl_3"));
+	ship_cockpit2_usemtl_3->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_cockpit2_usemtl_3(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_cockpit2_usemtl_3.ship_cockpit2_usemtl_3'"));
+	UStaticMesh *Assetship_cockpit2_usemtl_3 = MeshAssetship_cockpit2_usemtl_3.Object;
+	ship_cockpit2_usemtl_3->SetStaticMesh(Assetship_cockpit2_usemtl_3);
+
+	ship_cockpit2_usemtl_2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_cockpit2_usemtl_2"));
+	ship_cockpit2_usemtl_2->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_cockpit2_usemtl_2(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_cockpit2_usemtl_2.ship_cockpit2_usemtl_2'"));
+	UStaticMesh *Assetship_cockpit2_usemtl_2 = MeshAssetship_cockpit2_usemtl_2.Object;
+	ship_cockpit2_usemtl_2->SetStaticMesh(Assetship_cockpit2_usemtl_2);
+
+	ship_cockpit2_usemtl_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ship_cockpit2_usemtl_1"));
+	ship_cockpit2_usemtl_1->SetupAttachment(Collision, NAME_None);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetship_cockpit2_usemtl_1(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_cockpit2_usemtl_1.ship_cockpit2_usemtl_1'"));
+	UStaticMesh *Assetship_cockpit2_usemtl_1 = MeshAssetship_cockpit2_usemtl_1.Object;
+	ship_cockpit2_usemtl_1->SetStaticMesh(Assetship_cockpit2_usemtl_1);
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->AddLocalTransform(FTransform(FVector(-300.0f, 0.0f, 600.0f)));
@@ -34,6 +141,11 @@ APlayerShip_CPP::APlayerShip_CPP()
 void APlayerShip_CPP::BeginPlay()
 {
 	Super::BeginPlay();
+
+	FRotator Rotation = GetActorRotation();
+	Rotation.Add(0.0f, -90.0f, 0.0f);
+	SetActorRotation(Rotation);
+	SetActorScale3D(FVector(0.1f, 0.1f, 0.1f));
 }
 
 void APlayerShip_CPP::Tick(float DeltaTime)

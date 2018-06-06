@@ -34,8 +34,27 @@ protected:
 
 private:
 	UBoxComponent *Collision = nullptr;
-	UStaticMeshComponent *Mesh = nullptr;
 	UCameraComponent *Camera = nullptr;
 	UShootComponent_CPP *ShootComponent = nullptr;
 	UMoveComponent_CPP *MoveComponent = nullptr;
+
+	UStaticMeshComponent *ShipBody = nullptr;
+	UStaticMeshComponent *Ship_windshield_usemtl_1 = nullptr;
+	UStaticMeshComponent *Ship_windshield_usemtl_2 = nullptr;
+	UStaticMeshComponent *Ship_red_mesh01_1 = nullptr;
+	UStaticMeshComponent *ship_propulsion_usemtl_1 = nullptr;
+	UStaticMeshComponent *ship_lights_2_mesh01_1 = nullptr;
+	UStaticMeshComponent *ship_green__1 = nullptr;
+	UStaticMeshComponent *ship_door_usemtl_2 = nullptr;
+	UStaticMeshComponent *ship_door_usemtl_1 = nullptr;
+	UStaticMeshComponent *ship_dash_usemtl_4 = nullptr;
+	UStaticMeshComponent *ship_dash_usemtl_3 = nullptr;
+	UStaticMeshComponent *ship_dash_usemtl_2 = nullptr;
+	UStaticMeshComponent *ship_dash_usemtl_1 = nullptr;
+	UStaticMeshComponent *ship_cushion_usemtl_1 = nullptr;
+	UStaticMeshComponent *ship_couplers__1 = nullptr;
+	UStaticMeshComponent *ship_cockpit2_usemtl_4 = nullptr;
+	UStaticMeshComponent *ship_cockpit2_usemtl_3 = nullptr;
+	UStaticMeshComponent *ship_cockpit2_usemtl_2 = nullptr;
+	UStaticMeshComponent *ship_cockpit2_usemtl_1 = nullptr;
 };
