@@ -24,6 +24,16 @@ void AProjectile_CPP::BeginPlay()
 {
 	Super::BeginPlay();
 	SetActorScale3D(FVector(0.1f, 0.1f, 0.1f));
+
+	if (GetOwner())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("GetOwner"));
+		// UBoxComponent *OwnerCollision = GetOwner()->FindComponentByClass<UBoxComponent>();
+		// Collision->IgnoreComponentWhenMoving(OwnerCollision, true);
+		// OwnerCollision->IgnoreComponentWhenMoving(Collision, true);
+		// Collision->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+
 	Collision->OnComponentBeginOverlap.AddDynamic(this, &AProjectile_CPP::OnProjectileOverlap);
 }
 

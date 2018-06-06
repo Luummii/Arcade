@@ -41,6 +41,7 @@ void UShootComponent_CPP::Shoot()
 		FVector Location = GetOwner()->GetActorLocation() + Rotation.RotateVector(ShootInfo.Offset);
 		Rotation.Add(0.0f, ShootInfo.Angle, 0.0f);
 		FActorSpawnParameters SpawnParameters;
+		SpawnParameters.Owner = GetOwner(); // Указываем кто владеет выпущенным снарядом
 		GetWorld()->SpawnActor<AProjectile_CPP>(Location, Rotation, SpawnParameters);
 	}
 }
