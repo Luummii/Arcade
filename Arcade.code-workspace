@@ -21,7 +21,8 @@
 			"memory": "cpp",
 			"string": "cpp",
 			"type_traits": "cpp",
-			"__locale": "cpp"
+			"__locale": "cpp",
+			"typeinfo": "cpp"
 		}
 	}
 }

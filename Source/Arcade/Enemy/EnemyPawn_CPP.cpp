@@ -141,22 +141,14 @@ AEnemyPawn_CPP::AEnemyPawn_CPP()
 void AEnemyPawn_CPP::BeginPlay()
 {
 	Super::BeginPlay();
-
-	FRotator Rotation = GetActorRotation();
 	SetActorScale3D(FVector(0.1f, 0.1f, 0.1f));
+	UE_LOG(LogTemp, Warning, TEXT("Enemy name = %s"), *GetName());
 }
 
 void AEnemyPawn_CPP::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-}
-
-void AEnemyPawn_CPP::PossessedBy(AController *NewController)
-{
-	//PlayerController = Cast<APlayerController>(NewController); см. подсказку в определении
-}
-
-void AEnemyPawn_CPP::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	FVector ActorLocation = GetActorLocation();
+	ActorLocation.X = ActorLocation.X - 1.0f;
+	SetActorLocation(ActorLocation);
 }

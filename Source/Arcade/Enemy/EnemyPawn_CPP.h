@@ -27,9 +27,6 @@ protected:
 
 public:
 	virtual void Tick(float DeltaTime) override;
-	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
-	// Как только пешка получает контроллер, то его можно тут передать в внутрь класса
-	virtual void PossessedBy(AController *NewController) override;
 
 protected:
 	APlayerController *PlayerController;

@@ -8,17 +8,10 @@ void UEnemySpawnComponent_CPP::BeginPlay()
 	Super::BeginPlay();
 	Random.GenerateNewSeed();
 
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(500.0f, 0.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), 10, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(230.0f, 10.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), 20, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(-30.0f, 20.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), 30, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(140.0f, 30.0f, 450.0f), FRotator(0.0f, 0.0f, 0.0f), 40, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(250.0f, 40.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), 50, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(360.0f, 50.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), 60, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(470.0f, 60.0f, 120.0f), FRotator(0.0f, 0.0f, 0.0f), 70, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(580.0f, 70.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), 80, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(690.0f, 80.0f, 40.0f), FRotator(0.0f, 0.0f, 0.0f), 90, 1.0f));
-	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(-100.0f, 90.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), 100, 1.0f));
-
+	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(500.0f, -300.0f, 0.0f), FRotator(0.0f, 90.0f, 0.0f), 3, 1.5f));
+	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(530.0f, 300.0f, 0.0f), FRotator(0.0f, 90.0f, 0.0f), 2, 1.5f));
+	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(630.0f, 300.0f, 0.0f), FRotator(0.0f, 90.0f, 0.0f), 3, 1.5f));
+	EnemySpawnInfos.Add(FEnemySpawnInfo(FVector(640.0f, -30.0f, 0.0f), FRotator(0.0f, 90.0f, 0.0f), 4, 1.0f));
 	StartSpawnStage();
 }
 
@@ -26,9 +19,10 @@ void UEnemySpawnComponent_CPP::StartSpawnStage()
 {
 	SpawnStage = EnemySpawnInfos[Random.RandRange(0, EnemySpawnInfos.Num() - 1)];
 	EnemiesSpawned = 0;
-	SpawnEnemy();
 	float ChangeStageTime = Random.RandRange(StageMinDelay, StageMaxDelay);
-	GetWorld()->GetTimerManager().SetTimer(EnemySpawnTimer, this, &UEnemySpawnComponent_CPP::StartSpawnStage, ChangeStageTime, false);
+	UE_LOG(LogTemp, Warning, TEXT("ChangeStageTime = %f"), ChangeStageTime);
+	GetWorld()->GetTimerManager().SetTimer(ChangeStageTimer, this, &UEnemySpawnComponent_CPP::StartSpawnStage, ChangeStageTime, false);
+	SpawnEnemy();
 }
 
 void UEnemySpawnComponent_CPP::SpawnEnemy()
@@ -40,6 +34,7 @@ void UEnemySpawnComponent_CPP::SpawnEnemy()
 
 	if (EnemiesSpawned < SpawnStage.NumOfEnemies)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("EnemiesSpawned"));
 		GetWorld()->GetTimerManager().SetTimer(EnemySpawnTimer, this, &UEnemySpawnComponent_CPP::SpawnEnemy, SpawnStage.SpawnDelay, false);
 	}
 }
