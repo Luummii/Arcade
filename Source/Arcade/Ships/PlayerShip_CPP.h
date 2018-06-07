@@ -24,10 +24,7 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
-	// Как только пешка получает контроллер, то его можно тут передать в внутрь класса
-	virtual void PossessedBy(AController *NewController) override;
 
 protected:
 	APlayerController *PlayerController;
@@ -38,6 +35,7 @@ private:
 	UShootComponent_CPP *ShootComponent = nullptr;
 	UMoveComponent_CPP *MoveComponent = nullptr;
 
+private:
 	UStaticMeshComponent *ShipBody = nullptr;
 	UStaticMeshComponent *Ship_windshield_usemtl_1 = nullptr;
 	UStaticMeshComponent *Ship_windshield_usemtl_2 = nullptr;

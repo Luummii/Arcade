@@ -10,12 +10,13 @@ struct FShootInfo
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FShootInfo(FVector __Offset, float __Angle) : Offset(__Offset), Angle(__Angle) {}
+	FShootInfo(FVector __Offset, float __Angle, float __Damage) : Offset(__Offset), Angle(__Angle), Damage(__Damage) {}
 	FShootInfo() {}
 
 public:
 	FVector Offset;
 	float Angle;
+	float Damage;
 };
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
@@ -43,4 +44,5 @@ public:
 private:
 	FTimerHandle ShootingTimer;
 	TArray<FShootInfo> ShootInfos;
+	float Damage = 0.0f;
 };

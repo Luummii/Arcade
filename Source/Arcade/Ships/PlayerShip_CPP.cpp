@@ -1,4 +1,4 @@
-#include "EnemyPawn_CPP.h"
+#include "PlayerShip_CPP.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/InputComponent.h"
@@ -9,18 +9,20 @@
 #include "../Components/ShootComponent_CPP.h"
 #include "../Components/MoveComponent_CPP.h"
 
-AEnemyPawn_CPP::AEnemyPawn_CPP()
+APlayerShip_CPP::APlayerShip_CPP()
 {
-	PrimaryActorTick.bCanEverTick = true;
 
 	Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
 	RootComponent = Collision;
 
+	Collision->SetCollisionProfileName("Pawn");
+
 	ShipBody = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ShipBody"));
 	ShipBody->SetupAttachment(Collision, NAME_None);
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetShipBody(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_body_2.ship_body_2'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAssetShipBody(TEXT("StaticMesh'/Game/Assets/Models/PlayerShip/Mesh/ship_body.ship_body'"));
 	UStaticMesh *AssetShipBody = MeshAssetShipBody.Object;
 	ShipBody->SetStaticMesh(AssetShipBody);
+	ShipBody->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	Ship_windshield_usemtl_1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ship_windshield_usemtl_1"));
 	Ship_windshield_usemtl_1->SetupAttachment(Collision, NAME_None);
@@ -138,17 +140,32 @@ AEnemyPawn_CPP::AEnemyPawn_CPP()
 	MoveComponent = CreateDefaultSubobject<UMoveComponent_CPP>(TEXT("MoveComponent"));
 }
 
-void AEnemyPawn_CPP::BeginPlay()
+void APlayerShip_CPP::BeginPlay()
 {
 	Super::BeginPlay();
+
+	FRotator Rotation = GetActorRotation();
+	Rotation.Add(0.0f, -90.0f, 0.0f);
+	SetActorRotation(Rotation);
 	SetActorScale3D(FVector(0.1f, 0.1f, 0.1f));
-	UE_LOG(LogTemp, Warning, TEXT("Enemy name = %s"), *GetName());
 }
 
-void AEnemyPawn_CPP::Tick(float DeltaTime)
+void APlayerShip_CPP::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 {
-	Super::Tick(DeltaTime);
-	FVector ActorLocation = GetActorLocation();
-	ActorLocation.X = ActorLocation.X - 1.0f;
-	SetActorLocation(ActorLocation);
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	InputComponent->BindAction(TEXT("LeftMove"), IE_Pressed, MoveComponent, &UMoveComponent_CPP::OnLeftMove);
+	InputComponent->BindAction(TEXT("LeftMove"), IE_Released, MoveComponent, &UMoveComponent_CPP::OnLeftMove);
+
+	InputComponent->BindAction(TEXT("RightMove"), IE_Pressed, MoveComponent, &UMoveComponent_CPP::OnRightMove);
+	InputComponent->BindAction(TEXT("RightMove"), IE_Released, MoveComponent, &UMoveComponent_CPP::OnRightMove);
+
+	InputComponent->BindAction(TEXT("ForwardMove"), IE_Pressed, MoveComponent, &UMoveComponent_CPP::OnForwardMove);
+	InputComponent->BindAction(TEXT("ForwardMove"), IE_Released, MoveComponent, &UMoveComponent_CPP::OnForwardMove);
+
+	InputComponent->BindAction(TEXT("BackMove"), IE_Pressed, MoveComponent, &UMoveComponent_CPP::OnBackMove);
+	InputComponent->BindAction(TEXT("BackMove"), IE_Released, MoveComponent, &UMoveComponent_CPP::OnBackMove);
+
+	InputComponent->BindAction(TEXT("Fire"), IE_Pressed, ShootComponent, &UShootComponent_CPP::StartShooting);
+	InputComponent->BindAction(TEXT("Fire"), IE_Released, ShootComponent, &UShootComponent_CPP::StopShooting);
 }

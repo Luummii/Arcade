@@ -25,6 +25,7 @@ public:
 	USphereComponent *Collision = nullptr;
 	UStaticMeshComponent *Mesh = nullptr;
 	float ProjectileSpeed = 500.0f;
+	float Damage = 0.0f;
 
 protected:
 	UFUNCTION()

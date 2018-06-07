@@ -5,9 +5,9 @@
 
 UShootComponent_CPP::UShootComponent_CPP()
 {
-	ShootInfos.Add(FShootInfo(FVector(0.0f, 10.0f, 0.0f), 90.0f));
-	ShootInfos.Add(FShootInfo(FVector(10.0f, 20.0f, 0.0f), 60.0f));
-	ShootInfos.Add(FShootInfo(FVector(-10.0f, 20.0f, 0.0f), 120.0f));
+	ShootInfos.Add(FShootInfo(FVector(0.0f, 10.0f, 0.0f), 90.0f, 10.0f));
+	ShootInfos.Add(FShootInfo(FVector(10.0f, 20.0f, 0.0f), 60.0f, 10.0f));
+	ShootInfos.Add(FShootInfo(FVector(-10.0f, 20.0f, 0.0f), 120.0f, 10.0f));
 }
 
 void UShootComponent_CPP::BeginPlay()
@@ -42,6 +42,12 @@ void UShootComponent_CPP::Shoot()
 		Rotation.Add(0.0f, ShootInfo.Angle, 0.0f);
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.Owner = GetOwner(); // Указываем кто владеет выпущенным снарядом
-		GetWorld()->SpawnActor<AProjectile_CPP>(Location, Rotation, SpawnParameters);
+
+		// Иногда могут не спавница, наприер если что то блокируется
+		// и метод ниже устанавливает параметр чтоб спавнился всегда.
+		// либо ниже проверяем Projectile на существование
+		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		AProjectile_CPP *Projectile = GetWorld()->SpawnActor<AProjectile_CPP>(Location, Rotation, SpawnParameters);
+		Projectile->Damage = ShootInfo.Damage;
 	}
 }

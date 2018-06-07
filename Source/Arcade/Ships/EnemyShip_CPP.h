@@ -1,10 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "EnemyPawn_CPP.generated.h"
+#include "EnemyShip_CPP.generated.h"
 
 class UBoxComponent;
 class UStaticMeshComponent;
@@ -15,12 +13,12 @@ class UShootComponent_CPP;
 class UMoveComponent_CPP;
 
 UCLASS()
-class ARCADE_API AEnemyPawn_CPP : public APawn
+class ARCADE_API AEnemyShip_CPP : public APawn
 {
 	GENERATED_BODY()
 
 public:
-	AEnemyPawn_CPP();
+	AEnemyShip_CPP();
 
 protected:
 	virtual void BeginPlay() override;

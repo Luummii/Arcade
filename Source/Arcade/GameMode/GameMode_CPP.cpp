@@ -1,5 +1,5 @@
 #include "GameMode_CPP.h"
-#include "../Player/PlayerShip_CPP.h"
+#include "../Ships/PlayerShip_CPP.h"
 #include "../Components/EnemySpawnComponent_CPP.h"
 #include "ConstructorHelpers.h"
 
